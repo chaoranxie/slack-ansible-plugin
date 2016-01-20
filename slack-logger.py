@@ -37,7 +37,7 @@ def send_to_slack():
     # send slack message
     try:
         slack_message = json.loads(slack_client.api_call('chat.postMessage', **{
-            'text': '```{}```'.format(log_message),
+            'text': '```{0}```'.format(log_message),
             'channel': SLACK_CHANNEL,
             'as_user': True
         }))
@@ -50,13 +50,13 @@ def update_to_slack():
     # update slack message
     try:
         slack_message = json.loads(slack_client.api_call('chat.update', **{
-            'text': '```{}```'.format(log_message),
+            'text': '```{0}```'.format(log_message),
             'ts': slack_message['ts'],
             'channel': slack_message['channel']
         }))
     except:
         pass
-        
+
 class CallbackModule(object):
     """
     An ansible callback module for sending ansible output to slack
